@@ -6,9 +6,9 @@ use Mix.Config
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
 config :wonderpay, Wonderpay.Repo,
-  username: "postgres",
-  password: "postgres",
-  database: "wonderpay_test#{System.get_env("MIX_TEST_PARTITION")}",
+  username: "wpay",
+  password: "wpay",
+  database: "wonderpay#{System.get_env("MIX_TEST_PARTITION")}",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
 
