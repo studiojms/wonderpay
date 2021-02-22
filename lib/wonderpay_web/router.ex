@@ -7,6 +7,8 @@ defmodule WonderpayWeb.Router do
 
   scope "/api", WonderpayWeb do
     pipe_through :api
+
+    get "/", WelcomeController, :index
   end
 
   # Enables LiveDashboard only for development
