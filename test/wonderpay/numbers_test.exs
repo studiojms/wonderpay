@@ -1,5 +1,5 @@
 defmodule Wonderpay.NumbersTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
 
   alias Wonderpay.Numbers
 
