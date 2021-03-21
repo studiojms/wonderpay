@@ -1,8 +1,14 @@
 defmodule WonderpayWeb.Router do
   use WonderpayWeb, :router
 
+  import Plug.BasicAuth
+
   pipeline :api do
     plug :accepts, ["json"]
+  end
+
+  pipeline :auth do
+    plug :basic_auth, Application.compile_env(:wonderpay, :basic_auth)
   end
 
   scope "/api", WonderpayWeb do
@@ -11,6 +17,10 @@ defmodule WonderpayWeb.Router do
     get "/:filename", WelcomeController, :index
 
     post "/users", UsersController, :create
+  end
+
+  scope "/api", WonderpayWeb do
+    pipe_through [:api, :auth]
 
     post "/account/:id/deposit", AccountsController, :deposit
     post "/account/:id/withdraw", AccountsController, :withdraw
